@@ -191,11 +191,11 @@ def get_table1():
     params = {}
     
 
-    # Step 0 LIKE company
+    # Step 0 match company
     if company:
         search_terms = company.split(" ")
-        # query += ' AND '.join(['CarName LIKE :company_term{}'.format(i) for i in range(len(search_terms))])
-        company_query = 'CarName LIKE %:company_term% '
+        # query += ' AND '.join(['CarName MATCH :company_term{}'.format(i) for i in range(len(search_terms))])
+        company_query = 'CarName MATCH :company_term '
         # Bind all the parameters to the query
         # company_params = {'company_term{}'.format(i): term for i, term in enumerate(search_terms)}
         company_params = {'company_term': ' '.join(search_terms)}
@@ -205,11 +205,11 @@ def get_table1():
         print("Step 0 Params:", params)
         results = db.session.execute(query, params).fetchall()
         print("Step 0 Results:", results)
-    # Step 1: LIKE CarName
+    # Step 1: Match CarName
     if model:
         search_terms = model.split(" ")
         print(search_terms)
-        model_query = 'AND ' +' AND '.join(['CarName LIKE :term{}'.format(i) for i in range(len(search_terms))])
+        model_query = 'AND ' +' AND '.join(['CarName MATCH :term{}'.format(i) for i in range(len(search_terms))])
 
         # Bind all the parameters to the query
         model_params = {'term{}'.format(i): search_terms[i] for i in range(len(search_terms))}
@@ -234,7 +234,7 @@ def get_table1():
             results = db.session.execute(query, params).fetchall()
             print("Step 2 Results:", results)
         else:
-            query += ' AND FuelType LIKE :fuel_type'
+            query += ' AND FuelType MATCH :fuel_type'
             print("Step 2 Query:", query)
 
             # Bind all the parameters to the query
@@ -268,7 +268,7 @@ def get_table1():
             print()
     #     else:
 
-    #         query += ' AND Location LIKE :location'
+    #         query += ' AND Location MATCH :location'
     #         print("Step 3 Query:", query)
 
     #         # Bind all the parameters to the query
@@ -344,11 +344,11 @@ def get_table2():
     results = ""
     params = {}
 
-    # Step 0 LIKE company
+    # Step 0 match company
     if company:
         search_terms = company.split(" ")
-        # query += ' AND '.join(['CarName LIKE :company_term{}'.format(i) for i in range(len(search_terms))])
-        company_query = 'CarName LIKE :company_term '
+        # query += ' AND '.join(['CarName MATCH :company_term{}'.format(i) for i in range(len(search_terms))])
+        company_query = 'CarName MATCH :company_term '
         # Bind all the parameters to the query
         # company_params = {'company_term{}'.format(i): term for i, term in enumerate(search_terms)}
         company_params = {'company_term': ' '.join(search_terms)}
@@ -358,10 +358,10 @@ def get_table2():
         print("Step 0 Params:", params)
         results = db.session.execute(query, params).fetchall()
         print("Step 0 Results:", results)
-    # Step 1: LIKE CarName
+    # Step 1: Match CarName
     if model:
         search_terms = model.split(" ")
-        model_query = 'AND ' +' AND '.join(['CarName LIKE :term{}'.format(i) for i in range(len(search_terms))])
+        model_query = 'AND ' +' AND '.join(['CarName MATCH :term{}'.format(i) for i in range(len(search_terms))])
 
         # Bind all the parameters to the query
         model_params = {'term{}'.format(i): search_terms[i] for i in range(len(search_terms))}
@@ -387,7 +387,7 @@ def get_table2():
             results = db.session.execute(query, params).fetchall()
             print("Step 2 Results:", results)
         else:
-            query += ' AND FuelType LIKE :fuel_type'
+            query += ' AND FuelType MATCH :fuel_type'
             print("Step 2 Query:", query)
 
             # Bind all the parameters to the query
@@ -421,7 +421,7 @@ def get_table2():
             print()
         # else:
 
-        #     query += ' AND Location LIKE :location'
+        #     query += ' AND Location MATCH :location'
         #     print("Step 3 Query:", query)
 
         #     # Bind all the parameters to the query
@@ -496,11 +496,11 @@ def get_table3():
     query = 'SELECT * FROM spinny_hyderabad_fts WHERE '  # Placeholder condition that is always true
     results = ""
     params = {}
-    # Step 0 LIKE company
+    # Step 0 match company
     if company:
         search_terms = company.split(" ")
-        # query += ' AND '.join(['CarName LIKE :company_term{}'.format(i) for i in range(len(search_terms))])
-        company_query = 'CarName LIKE :company_term '
+        # query += ' AND '.join(['CarName MATCH :company_term{}'.format(i) for i in range(len(search_terms))])
+        company_query = 'CarName MATCH :company_term '
         # Bind all the parameters to the query
         # company_params = {'company_term{}'.format(i): term for i, term in enumerate(search_terms)}
         company_params = {'company_term': ' '.join(search_terms)}
@@ -510,10 +510,10 @@ def get_table3():
         print("Step 0 Params:", params)
         results = db.session.execute(query, params).fetchall()
         print("Step 0 Results:", results)
-    # Step 1: LIKE CarName
+    # Step 1: Match CarName
     if model:
         search_terms = model.split(" ")
-        model_query = 'AND ' +' AND '.join(['CarName LIKE :term{}'.format(i) for i in range(len(search_terms))])
+        model_query = 'AND ' +' AND '.join(['CarName MATCH :term{}'.format(i) for i in range(len(search_terms))])
 
         # Bind all the parameters to the query
         model_params = {'term{}'.format(i): search_terms[i] for i in range(len(search_terms))}
@@ -539,7 +539,7 @@ def get_table3():
             results = db.session.execute(query, params).fetchall()
             print("Step 2 Results:", results)
         else:
-            query += ' AND FuelType LIKE :fuel_type'
+            query += ' AND FuelType MATCH :fuel_type'
             print("Step 2 Query:", query)
 
             # Bind all the parameters to the query
@@ -573,7 +573,7 @@ def get_table3():
             print()
         # else:
 
-        #     query += ' AND Location LIKE :location'
+        #     query += ' AND Location MATCH :location'
         #     print("Step 3 Query:", query)
 
         #     # Bind all the parameters to the query
@@ -649,11 +649,11 @@ def get_table4():
     query = 'SELECT * FROM spinny_bangalore_fts WHERE '  # Placeholder condition that is always true
     results = ""
     params = {}
-    # Step 0 LIKE company
+    # Step 0 match company
     if company:
         search_terms = company.split(" ")
-        # query += ' AND '.join(['CarName LIKE :company_term{}'.format(i) for i in range(len(search_terms))])
-        company_query = 'CarName LIKE :company_term '
+        # query += ' AND '.join(['CarName MATCH :company_term{}'.format(i) for i in range(len(search_terms))])
+        company_query = 'CarName MATCH :company_term '
         # Bind all the parameters to the query
         # company_params = {'company_term{}'.format(i): term for i, term in enumerate(search_terms)}
         company_params = {'company_term': ' '.join(search_terms)}
@@ -663,10 +663,10 @@ def get_table4():
         print("Step 0 Params:", params)
         results = db.session.execute(query, params).fetchall()
         print("Step 0 Results:", results)
-    # Step 1: LIKE CarName
+    # Step 1: Match CarName
     if model:
         search_terms = model.split(" ")
-        model_query = 'AND ' +' AND '.join(['CarName LIKE :term{}'.format(i) for i in range(len(search_terms))])
+        model_query = 'AND ' +' AND '.join(['CarName MATCH :term{}'.format(i) for i in range(len(search_terms))])
 
         # Bind all the parameters to the query
         model_params = {'term{}'.format(i): search_terms[i] for i in range(len(search_terms))}
@@ -692,7 +692,7 @@ def get_table4():
             results = db.session.execute(query, params).fetchall()
             print("Step 2 Results:", results)
         else:
-            query += ' AND FuelType LIKE :fuel_type'
+            query += ' AND FuelType MATCH :fuel_type'
             print("Step 2 Query:", query)
 
             # Bind all the parameters to the query
@@ -726,7 +726,7 @@ def get_table4():
             print()
         # else:
 
-        #     query += ' AND Location LIKE :location'
+        #     query += ' AND Location MATCH :location'
         #     print("Step 3 Query:", query)
 
         #     # Bind all the parameters to the query
@@ -801,11 +801,11 @@ def get_table5():
     query = 'SELECT * FROM spinny_pune_fts WHERE '  # Placeholder condition that is always true
     results = ""
     params = {}
-    # Step 0 LIKE company
+    # Step 0 match company
     if company:
         search_terms = company.split(" ")
-        # query += ' AND '.join(['CarName LIKE :company_term{}'.format(i) for i in range(len(search_terms))])
-        company_query = 'CarName LIKE :company_term '
+        # query += ' AND '.join(['CarName MATCH :company_term{}'.format(i) for i in range(len(search_terms))])
+        company_query = 'CarName MATCH :company_term '
         # Bind all the parameters to the query
         # company_params = {'company_term{}'.format(i): term for i, term in enumerate(search_terms)}
         company_params = {'company_term': ' '.join(search_terms)}
@@ -815,10 +815,10 @@ def get_table5():
         print("Step 0 Params:", params)
         results = db.session.execute(query, params).fetchall()
         print("Step 0 Results:", results)
-    # Step 1: LIKE CarName
+    # Step 1: Match CarName
     if model:
         search_terms = model.split(" ")
-        model_query = 'AND ' +' AND '.join(['CarName LIKE :term{}'.format(i) for i in range(len(search_terms))])
+        model_query = 'AND ' +' AND '.join(['CarName MATCH :term{}'.format(i) for i in range(len(search_terms))])
 
         # Bind all the parameters to the query
         model_params = {'term{}'.format(i): search_terms[i] for i in range(len(search_terms))}
@@ -844,7 +844,7 @@ def get_table5():
             results = db.session.execute(query, params).fetchall()
             print("Step 2 Results:", results)
         else:
-            query += ' AND FuelType LIKE :fuel_type'
+            query += ' AND FuelType MATCH :fuel_type'
             print("Step 2 Query:", query)
 
             # Bind all the parameters to the query
@@ -878,7 +878,7 @@ def get_table5():
             print()
         # else:
 
-        #     query += ' AND Location LIKE :location'
+        #     query += ' AND Location MATCH :location'
         #     print("Step 3 Query:", query)
 
         #     # Bind all the parameters to the query
